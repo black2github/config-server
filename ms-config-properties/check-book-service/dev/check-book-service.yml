@@ -19,4 +19,4 @@ server:
 
 #  see @ConfigurationProperties("testProperty")
 testProperty:
-  field: 123456-dev
+  field: 123457-dev

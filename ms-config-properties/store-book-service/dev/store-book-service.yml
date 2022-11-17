@@ -15,4 +15,4 @@ server:
 
 #  see @ConfigurationProperties("testProperty")
 testProperty:
-  field: 890-dev
+  field: 891-dev
