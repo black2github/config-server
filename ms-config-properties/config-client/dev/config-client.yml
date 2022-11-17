@@ -1,0 +1,15 @@
+server:
+    port: 8090
+properties:
+    test: /prop
+
+# just for test
+book-service:
+    url:  http://localhost:1234
+
+url: http://localhost:77711
+
+port: 8045
+
+custom_properties:
+    prop1: 127

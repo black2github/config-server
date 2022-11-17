@@ -1,0 +1,49 @@
+eureka:
+  shouldUseDns: false
+  client:
+    # Если параметр shouldUseDns имеет значение false, мы будем использовать следующие свойства для явного указания
+    # маршрута к серверам eureka == укажите явный маршрут к серверу eureka (serviceUrl)
+    serviceUrl:
+      # (из мин. настройки клиента). «defaultZone» — это резервное значение строки, которое предоставляет URL-адрес
+      # службы для любого клиента, который не выражает предпочтения (значение по умолчанию).
+
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+#      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}, http://eureka-server-au.com:9001/eureka, http://eureka-server-en.com:9002/eureka/
+
+  instance:
+    #  (из мин. настройки клиента) использовать IP адрес (обязательно для локальных тестов)
+    preferIpAddress: true
+
+spring:
+  # для config server
+  profiles:
+    active: native
+
+# {application} - название приложения. Должно совпадать с параметром name в файле свойств у клиента, который будет
+# запрашивать конкретно этот файл свойств {profile}- профиль приложения. dev, master или test.
+---
+spring:
+  #profiles: native
+  config:
+    activate:
+        on-profile: native
+
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: C:\\work/JavaProjects/advanced task3.1.2 (Config Server)/config-server/ms-config-properties/{application}/{profile}
+---
+spring:
+  #profiles: git
+  config:
+    activate:
+      on-profile: git
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/black2github/config-server/ms-config-properties
+          search-paths:
+            - "/{application}/{profile}"

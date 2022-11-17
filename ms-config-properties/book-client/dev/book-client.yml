@@ -1,0 +1,46 @@
+server:
+  port: 8082
+
+book-service:
+  url: http://localhost:8081
+  feign: /show
+  rest: /data
+#  для ribbon
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1000
+#book-service:
+#  ribbon:
+#    listOfServers: localhost:8082,localhost:8092
+#    eureka:
+#      enabled: true
+
+spring:
+  devtools:
+    add-properties: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list:
+      - '*'
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+
+  instance:
+    preferIpAddress: true
+    hostname: localhost
+    healthCheckUrl: https://${eureka.hostname}/health

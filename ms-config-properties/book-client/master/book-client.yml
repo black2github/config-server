@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+book-service:
+  url: http://localhost:8081
+  feign: /show
+  rest: /data
+
+spring:
+  devtools:
+    add-properties: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always

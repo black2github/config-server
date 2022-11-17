@@ -1,0 +1,17 @@
+server:
+  port: 8766
+
+zuul:
+  routes:
+    book-client:
+      path: /client/**
+#      path: /**
+      # we don't need to know url - just service id
+#      service-id: book-client
+      url: http://localhost:8082/
+
+  # Настройка означает (в связке с предыдущей), что если мы запустим наш zuul-service на порту 8766 и перейдем по адресу
+  # http://localhost:8766/client мы попадем на сервис book-client и дальше сможем ходить по всем его URL
+  # без проблем. Наш zuul будет автоматически перенаправлять на все его URL.
+  ignored-services: '*'
+  ignoredServices: '*'
