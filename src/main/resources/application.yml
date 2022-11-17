@@ -17,7 +17,7 @@ eureka:
 spring:
   # для config server
   profiles:
-    active: native
+    active: git
 
 # {application} - название приложения. Должно совпадать с параметром name в файле свойств у клиента, который будет
 # запрашивать конкретно этот файл свойств {profile}- профиль приложения. dev, master или test.
